@@ -1,5 +1,6 @@
-import { VideoStore } from "../components/video/store/type";
-import { AuthStore } from "./networks/auth/type";
+
+import { AuthStore } from "./auth/type";
+import { VideoStore } from "./videos/type";
 
 export interface Store {
     videos: VideoStore,

@@ -1,30 +1,35 @@
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchVideos } from "../../app/networks/videos/thunk";
-import { selectVideos } from "./store/slice";
-import { InfoVideo } from "./store/type";
-import { FetchVideoRequest } from "../../app/networks/videos/type";
+import { fetchVideos } from "../../app/videos/thunk";
+import { selectVideos } from "../../app/videos/slice";
+import { FetchVideoRequest, InfoVideo } from "../../app/videos/type";
+import Loader from "../common/Loader";
 
-const VideoInList = React.lazy(() => import('./VideoInList'));
+const VideoInList = React.lazy(() => import("./VideoInList"));
 
 export default function ListVideo() {
   const dispatch = useDispatch();
-  const [param, setParam] = React.useState<FetchVideoRequest>({
-    page : 1,
-    limit : 15,
-  }) ;
+  const [param, _] = React.useState<FetchVideoRequest>({
+    page: 1,
+    limit: 15,
+  });
 
   useEffect(() => {
-    dispatch(fetchVideos(param) as any)
-  },[param])
+    dispatch(fetchVideos(param) as any);
+  }, [param]);
 
-  const selectVideo : InfoVideo[] = useSelector(selectVideos);
+  const selectVideo: InfoVideo[] = useSelector(selectVideos);
 
   return (
     <div className="w-4/5 mx-auto">
-      {selectVideo && selectVideo?.map((item : InfoVideo, index : number) => {
-        return <VideoInList data={item} key={`${index}-video-in-list`} />;
-      })}
+      {selectVideo &&
+        selectVideo?.map((item: InfoVideo, index: number) => {
+          return (
+            <Suspense fallback={<Loader />} key={`${index}-video-in-list`}>
+              <VideoInList data={item} />
+            </Suspense>
+          );
+        })}
     </div>
   );
 }

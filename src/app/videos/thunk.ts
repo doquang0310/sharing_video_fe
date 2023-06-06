@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { StatusCodeResponse } from "../constants";
+import { StatusCodeResponse } from "../../ultils/constants";
 import VideoService from "./services";
 import { CreateVideoRequest, FetchVideoRequest } from "./type";
 

@@ -1,6 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { StatusCodeResponse } from "../app/networks/constants";
-import store from "../app/rootStore";
+import { StatusCodeResponse } from "./constants";
 import { saveUserToLocalStorage } from "./auth";
 // Create a Redux store
 

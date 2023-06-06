@@ -1,18 +1,20 @@
 import { Middleware } from "redux";
-import { Socket, io } from "socket.io-client";
-import { InfoVideo } from "../../components/video/store/type";
 import videoSocket from "../../websocket/video.websocket";
+import { InfoVideo } from "../videos/type";
+import { videoActions } from "../videos/slice";
 
 const videoMiddleware: Middleware = (store) => (next) => (action) => {
   try {
-    if (action.type == "videos/startConnecting") {
-      videoSocket.connect('http://localhost:3000');
+    if (action.type === "videos/startConnecting") {
+      videoSocket.connect("http://localhost:3000");
       videoSocket.on("videos", (data: InfoVideo) => {
-        console.log(data);
+        store.dispatch(
+          videoActions.setNotification({ isShow: true, video: data })
+        );
       });
     }
 
-    if (action.type == "videos/stopConnecting") {
+    if (action.type === "videos/stopConnecting") {
       videoSocket.disconnect();
     }
     return next(action);

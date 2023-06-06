@@ -29,5 +29,5 @@ class VideoSocket {
   }
 }
 const videoSocket = new VideoSocket();
-videoSocket.connect("http://localhost:3000");
+
 export default videoSocket;

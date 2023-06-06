@@ -1,5 +1,5 @@
 import { LoginData } from "./type";
-import axiosClient from "../../../ultils/axiosClient";
+import axiosClient from "../../ultils/axiosClient";
 
 const AuthService = {
   login: async (data: LoginData) => {

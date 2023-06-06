@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Video from "../components/video/Video";
 import { validateYoutubeLink } from "../ultils/regex";
 import { useDispatch } from "react-redux";
-import { createVideo } from "../app/networks/videos/thunk";
+import { createVideo } from "../app/videos/thunk";
 
 export default function UploadVideo() {
   const dispath = useDispatch();
@@ -35,9 +35,9 @@ export default function UploadVideo() {
 
   return (
     <div className="w-full mx-auto mt-5">
-      <div className="flex">
-        <div className="w-2/5 items-start">
-          <h1 className="text-3xl font-bold">Create Video</h1>
+      <div className="flex justify-between">
+        <div className="w-2/6 items-start">
+          <h1 className="text-3xl font-bold text-center">Create Video</h1>
           <div className="mt-5">
             <label
               htmlFor="url"
@@ -52,13 +52,13 @@ export default function UploadVideo() {
               onChange={handleChangeUrl}
               onBlur={handleValidate}
               value={url}
-              className="border-gray-300 focus:outline-gray-400 border w-4/5 h-10 rounded pl-1"
+              className="mr-5 p-2 text-gray-900 border-gray-900 border-b-4 placeholder-gray-500 border-2 rounded-md w-full"
             />
           </div>
           <button
-            disabled={url === "" ? true : false}
+            type="button"
+            className="mt-5 pt-2 pb-2 pl-10 pr-10 text-gray-900 border-gray-900 border-b-8 hover:border-b-2 transition-all delay-100 flex placeholder-gray-500 border-2 rounded-md"
             onClick={handleCreateVideo}
-            className="mt-5 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center cursor-pointer"
           >
             <svg
               viewBox="0 0 1000 1000"

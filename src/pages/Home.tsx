@@ -1,7 +1,11 @@
-import React from "react";
+import React, { Suspense } from "react";
 
-const ListVideo = React.lazy(() => import('../components/video/ListVideo'));
+const ListVideo = React.lazy(() => import("../components/video/ListVideo"));
 
 export default function Home() {
-  return <ListVideo/>;
+  return (
+    <Suspense>
+      <ListVideo />
+    </Suspense>
+  );
 }

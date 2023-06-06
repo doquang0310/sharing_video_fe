@@ -1,4 +1,4 @@
-import { UserInfo } from "../app/networks/auth/type";
+import { UserInfo } from "../app/auth/type";
 
 export const getAccessToken = () => {
   return localStorage.getItem("accessToken");

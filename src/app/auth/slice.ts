@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { AuthStore } from "./type";
 import { login, logout } from "./thunk";
-import { Store } from "../../type";
+import { Store } from "../type";
 
 const initialState: AuthStore = {
   isLoading: false,
@@ -29,13 +29,13 @@ const slice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(login.fulfilled, (state, action) => {
-      if (action.type == "auth/LOGIN/fulfilled") {
+      if (action.type === "auth/LOGIN/fulfilled") {
         state.userInfo = action.payload.user;
         state.isLogin = true;
       }
     });
     builder.addCase(logout.fulfilled, (state, action) => {
-      if (action.type == "auth/LOGOUT/fulfilled") {
+      if (action.type === "auth/LOGOUT/fulfilled") {
         state.isLogin = false;
         state.userInfo = {
           email: "",

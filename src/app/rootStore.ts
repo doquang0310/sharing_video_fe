@@ -1,8 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import videos from "../components/video/store/slice";
-import auth from "./networks/auth/slice";
-import crashMiddleware from "./middleware/crashMiddleware";
-import loggerMiddleware from "./middleware/loggerMiddleware";
+import videos from "./videos/slice";
+import auth from "./auth/slice";
 import videoMiddleware from "./middleware/videoMiddleware";
 
 const store = configureStore({
@@ -11,7 +9,7 @@ const store = configureStore({
     auth,
   },
   middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware().concat([crashMiddleware, loggerMiddleware,videoMiddleware])
+    return getDefaultMiddleware().concat([videoMiddleware])
   },
 });
 
