@@ -1,11 +1,17 @@
-import React, { Fragment } from 'react';
-import RoutesApp from './routes/index.routes';
+import React, { Suspense } from "react";
+import { Provider } from "react-redux";
+import store from "./app/rootStore";
+import Loader from "./components/common/Loader";
+
+const RoutesApp = React.lazy(() => import("./routes/index.routes"));
 
 function App() {
   return (
-    <Fragment>
-      <RoutesApp />
-    </Fragment>
+    <Provider store={store}>
+      <Suspense fallback={<Loader />}>
+        <RoutesApp />
+      </Suspense>
+    </Provider>
   );
 }
 
