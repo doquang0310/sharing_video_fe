@@ -1,0 +1,7 @@
+{
+    "testEnvironment": "jsdom",
+    "transform": {
+        "^.+\\.tsx?$": "ts-jest"
+    },
+    "setupFilesAfterEnv" : ["./__mocks__/setup.js","@testing-library/jest-dom/extend-expect"]
+}

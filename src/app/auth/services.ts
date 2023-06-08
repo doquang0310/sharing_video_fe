@@ -4,7 +4,8 @@ import { ENDPOINT } from "../../ultils/endpoint";
 
 const AuthService = {
   login: async (data: LoginData) => {
-    return axiosClient.post(ENDPOINT.LOGIN, data);
+    const result = await axiosClient.post(ENDPOINT.LOGIN, data);
+    return result;
   },
 };
 

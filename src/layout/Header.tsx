@@ -9,6 +9,7 @@ import { AiFillHome } from "react-icons/ai";
 
 export default function Header() {
   const dispatch = useDispatch();
+  const [showMenu, setShowMenu] = useState(false);
 
   const [accountInfo, setAccountInfo] = useState({
     email: "",
@@ -39,27 +40,84 @@ export default function Header() {
   };
 
   return (
-    <header className="border-b-8 border-black text-white pt-4 pb-4">
-      <div className="container mx-auto">
-        <div className="flex justify-between items-center">
-          <NavLink to="/" className={"nav-link flex items-center"}>
+    <header className="border-b-8 border-black  pt-4 pb-4">
+      <nav
+        className="
+        container mx-auto 
+          flex flex-wrap
+          items-center
+          justify-between
+          w-full
+          py-4
+          md:py-0
+          px-4
+          text-lg text-gray-700
+          bg-white
+        "
+      >
+        <div>
+          <NavLink
+            to="/"
+            className={"nav-link flex items-center"}
+            data-testid="home-element"
+          >
             <AiFillHome className="text-gray-900 hover:text-gray-700 text-5xl" />
             <p className="text-2xl text-gray-900 hover:text-gray-700 ml-3">
               Funny Video
             </p>
           </NavLink>
-          <div className="right-side flex justify-end items-center w-4/12">
+        </div>
+        <svg
+          onClick={() => setShowMenu(!showMenu)}
+          xmlns="http://www.w3.org/2000/svg"
+          id="menu-button"
+          className="h-6 w-6 cursor-pointer md:hidden block"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
+        <div
+          className={`${
+            showMenu == true ? "" : "hidden"
+          } w-full md:flex md:items-center md:w-auto`}
+          id="menu"
+        >
+          <div
+            className="
+              pt-4
+              text-base text-gray-700
+              md:flex
+              md:justify-between 
+              md:pt-0"
+          >
             {isLogin ? (
               <React.Fragment>
-                <NavLink to="/upload" className={"nav-link"}>
-                  <p className="mr-10 p-2 text-gray-900 border-gray-900 border-b-8 hover:border-b-2 placeholder-gray-500 border-2 rounded-md">
+                <NavLink
+                  to="/upload"
+                  className={"nav-link"}
+                  data-testid="create-video"
+                >
+                  <p className="mt-2 md:mt-0 mr-10 p-2 text-gray-900 border-gray-900 border-b-8 hover:border-b-2 placeholder-gray-500 border-2 rounded-md">
                     Create Video
                   </p>
                 </NavLink>
-                <p className="text-gray-900 font-bold text-md mr-3">{user?.email}</p>
+                <p
+                  className="mt-2 md:mt-0 text-gray-900 font-bold text-md mr-3"
+                  data-testid="email-header"
+                >
+                  {user?.email}
+                </p>
                 <button
                   type="button"
-                  className="mr-5 p-2 text-gray-900 border-gray-900 border-b-8 hover:border-b-2 placeholder-gray-500 border-2 rounded-md"
+                  data-testid="logout-button"
+                  className="mt-2 md:mt-0 mr-5 p-2 text-gray-900 border-gray-900 border-b-8 hover:border-b-2 placeholder-gray-500 border-2 rounded-md"
                   onClick={handleLogout}
                 >
                   Logout
@@ -74,7 +132,8 @@ export default function Header() {
                   }
                   value={accountInfo.email}
                   placeholder="Email"
-                  className="mr-5 p-2 text-gray-900 border-gray-900 border-b-8 focus:border-b-2 placeholder-gray-500 border-2 rounded-md"
+                  data-testid="email-input"
+                  className="mt-2 md:mt-0 mr-5 p-2 text-gray-900 border-gray-900 border-b-8 focus:border-b-2 placeholder-gray-500 border-2 rounded-md"
                 />
                 <input
                   type="password"
@@ -83,11 +142,13 @@ export default function Header() {
                   }
                   value={accountInfo.password}
                   placeholder="Password"
-                  className="mr-5 p-2 text-gray-900 border-gray-900 border-b-8 focus:border-b-2 placeholder-gray-500 border-2 rounded-md"
+                  data-testid="password-input"
+                  className="mt-2 md:mt-0 mr-5 p-2 text-gray-900 border-gray-900 border-b-8 focus:border-b-2 placeholder-gray-500 border-2 rounded-md"
                 />
                 <button
                   type="button"
-                  className="mr-5 p-2 text-gray-900 border-gray-900 border-b-8 hover:border-b-2 transition-all delay-100   placeholder-gray-500 border-2 rounded-md"
+                  data-testid="login-button"
+                  className="mt-2 md:mt-0 mr-5 p-2 text-gray-900 border-gray-900 border-b-8 hover:border-b-2 transition-all delay-100   placeholder-gray-500 border-2 rounded-md"
                   onClick={handleLogin}
                 >
                   Login
@@ -96,7 +157,18 @@ export default function Header() {
             )}
           </div>
         </div>
-      </div>
+      </nav>
     </header>
+
+    // <header className="border-b-8 border-black text-white pt-4 pb-4">
+    //   <div className="container mx-auto">
+    //     <div className="flex flex-col md:flex-row justify-between items-center">
+
+    //       <div className="right-side flex flex-wrap justify-end items-center w-full md:w-4/12">
+
+    //       </div>
+    //     </div>
+    //   </div>
+    // </header>
   );
 }

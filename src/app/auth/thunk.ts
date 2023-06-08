@@ -11,9 +11,10 @@ export const login = createAsyncThunk(
   async (params: LoginData, { rejectWithValue, dispatch }) => {
     dispatch({ type: "auth/setLoading", payload: true });
     const res = await AuthService.login(params);
-    if (res.status === StatusCodeResponse.SUCCESS) {
+
+    if (res.status == StatusCodeResponse.SUCCESS) {
       saveUserToLocalStorage(res.data?.data.user);
-      dispatch(videoActions.startConnecting())
+      dispatch(videoActions.startConnecting());
       return res.data?.data;
     }
 
@@ -23,9 +24,9 @@ export const login = createAsyncThunk(
 
 export const logout = createAsyncThunk(
   "auth/LOGOUT",
-  async (_, { rejectWithValue, dispatch }) => {
-    saveUserToLocalStorage({email : "",accessToken : ""})
-    dispatch(videoActions.stopConnecting())
+  async (params, { rejectWithValue, dispatch }) => {
+    saveUserToLocalStorage({ email: "", accessToken: "" });
+    dispatch(videoActions.stopConnecting());
 
     return false;
   }

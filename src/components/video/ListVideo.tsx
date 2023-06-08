@@ -21,7 +21,7 @@ export default function ListVideo() {
   const selectVideo: InfoVideo[] = useSelector(selectVideos);
 
   return (
-    <div className="w-4/5 mx-auto">
+    <div className="md:w-full xl:w-4/5 mx-auto">
       {selectVideo &&
         selectVideo?.map((item: InfoVideo, index: number) => {
           return (

@@ -25,8 +25,14 @@ export default function UploadVideo() {
   };
 
   const handleCreateVideo = async () => {
+    console.log(url);
     if (url === "") {
       alert("Url is empty");
+    }
+    const checkUrl = validateYoutubeLink(url);
+    if (!checkUrl) {
+      setUrl("");
+      return alert("Url is not valid");
     }
     const result = await dispath(createVideo({ url }) as any);
 
@@ -34,7 +40,7 @@ export default function UploadVideo() {
   };
 
   return (
-    <div className="w-full mx-auto mt-5">
+    <div className="w-full mx-auto mt-5" data-testid="upload-video">
       <div className="flex justify-between">
         <div className="w-2/6 items-start">
           <h1 className="text-3xl font-bold text-center">Create Video</h1>
@@ -51,12 +57,14 @@ export default function UploadVideo() {
               placeholder="https://www.youtube.com/watch?v=jQRo-vdjYd8&t=593s"
               onChange={handleChangeUrl}
               onBlur={handleValidate}
+              data-testid="url-input"
               value={url}
               className="mr-5 p-2 text-gray-900 border-gray-900 border-b-4 placeholder-gray-500 border-2 rounded-md w-full"
             />
           </div>
           <button
             type="button"
+            data-testid="create-video-button"
             className="mt-5 pt-2 pb-2 pl-10 pr-10 text-gray-900 border-gray-900 border-b-8 hover:border-b-2 transition-all delay-100 flex placeholder-gray-500 border-2 rounded-md"
             onClick={handleCreateVideo}
           >

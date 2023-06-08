@@ -34,13 +34,13 @@ export default function Notification() {
           : "hidden"
       }
     >
-      <div className="absolute -translate-x-2/4 -translate-y-2/4 left-2/4 top-2/4 pt-10 pb-10 flex w-full justify-center items-center bg-gray-300/75 z-10">
-        <div className="w-3/5">
+      <div className="absolute -translate-x-2/4 -translate-y-2/4 left-2/4 top-2/4 pt-10 pb-10 flex w-full justify-center items-center bg-gray-300/75 z-[9999]">
+        <div className="w-full md:w-3/5">
           <h1 className="text-gray-800 text-3xl text-center mb-10">
             NEW VIDEO !!!!
           </h1>
-          <Suspense fallback={<Loader/>}>
-          <VideoInList data={video} />
+          <Suspense fallback={<Loader />}>
+            <VideoInList data={video} />
           </Suspense>
           <div className="h-[50px] flex justify-center mt-10">
             <button
