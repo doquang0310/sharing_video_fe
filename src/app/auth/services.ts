@@ -1,9 +1,10 @@
 import { LoginData } from "./type";
 import axiosClient from "../../ultils/axiosClient";
+import { ENDPOINT } from "../../ultils/endpoint";
 
 const AuthService = {
   login: async (data: LoginData) => {
-    return axiosClient.post("http://localhost:3000/auth/login", data);
+    return axiosClient.post(ENDPOINT.LOGIN, data);
   },
 };
 

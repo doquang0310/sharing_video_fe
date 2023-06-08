@@ -5,7 +5,7 @@ import Loader from "./components/common/Loader";
 
 const RoutesApp = React.lazy(() => import("./routes/index.routes"));
 
-function App() {
+export function App() {
   return (
     <Provider store={store}>
       <Suspense fallback={<Loader />}>

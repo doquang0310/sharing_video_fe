@@ -6,7 +6,7 @@ import { videoActions } from "../videos/slice";
 const videoMiddleware: Middleware = (store) => (next) => (action) => {
   try {
     if (action.type === "videos/startConnecting") {
-      videoSocket.connect("http://localhost:3000");
+      videoSocket.connect(process.env.REACT_APP_BASE_API_URL as string);
       videoSocket.on("videos", (data: InfoVideo) => {
         store.dispatch(
           videoActions.setNotification({ isShow: true, video: data })
