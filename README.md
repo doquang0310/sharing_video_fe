@@ -14,25 +14,25 @@ This project use [ReactJs](https://react.dev/) framework TypeScript.
 - Run commands in order to start project or test .
 - Project start at http://localhost:<ENV.APP_PORT>
 
-### Start without Docker
+### Start & Test without Docker
 ```bash
 $ npm install
+
 $ npm run start
+
+$ num run test
 ```
 
-### Start with Docker
+### Start & Test with Docker
 ```bash
 $ sudo chown -R $(whoami) ~/.docker //For sure you have permisson
 
-$ docker compose up
-*if there is an error, please check the connection information with the db in the .env file*
+$ docker compose build
+
+$ docker compose up -d
+
+$ sudo docker exec -it <Container_Name> sh 
+
+$ npm run test:cov 
 
 ```
-
-### Test
-
-```bash
-# unit tests
-$ npm run test
-```
-
