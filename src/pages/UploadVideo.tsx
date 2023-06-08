@@ -40,8 +40,8 @@ export default function UploadVideo() {
 
   return (
     <div className="w-full mx-auto mt-5" data-testid="upload-video">
-      <div className="flex justify-between">
-        <div className="w-2/6 items-start">
+      <div className="flex md:flex-row flex-col justify-between">
+        <div className="p-6 md:p-0 w-full md:w-2/6 items-start">
           <h1 className="text-3xl font-bold text-center">Create Video</h1>
           <div className="mt-5">
             <label
@@ -79,7 +79,7 @@ export default function UploadVideo() {
             Upload
           </button>
         </div>
-        <div className="w-3/5 flex items-center  flex-col">
+        <div className="p-6 md:p-0 w-full md:w-3/5 flex items-center  flex-col">
           <h1 className="text-3xl font-bold mb-5">Preview</h1>
           <Video url={url} />
         </div>
