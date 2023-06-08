@@ -1,0 +1,24 @@
+version: '3'
+services: 
+  sharing_video_fe:
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+    env_file:
+      - ./.env
+    ports: 
+      - "${APP_PORT}:3000" # expose-to-the-world : only-in-the-docker
+    container_name: sharing_video-${ENV}
+    volumes: 
+      - .:/app
+      - /app/node_modules
+    command:
+          - /bin/sh
+          - -c
+          - |
+              npm run start
+    networks:
+      - fe_net
+networks:
+    fe_net:
+        driver: bridge
