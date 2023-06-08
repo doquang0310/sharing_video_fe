@@ -25,7 +25,6 @@ export default function UploadVideo() {
   };
 
   const handleCreateVideo = async () => {
-    console.log(url);
     if (url === "") {
       alert("Url is empty");
     }

@@ -7,11 +7,8 @@ import { CreateVideoRequest, FetchVideoRequest } from "./type";
 export const createVideo = createAsyncThunk(
   "videos/CREATE_VIDEO",
   async (params: CreateVideoRequest, { rejectWithValue , dispatch }) => {
-    console.log("?create video thunk")
     const res = await VideoService.createVideo(params);
-    console.log(res)
     if (res.status === StatusCodeResponse.CREATED) {
-      alert("Create Video Success");
       return res.data;
     }
 
@@ -28,7 +25,6 @@ export const fetchVideos = createAsyncThunk(
     if (res.status === StatusCodeResponse.SUCCESS) {
       return res.data?.data;
     }
-
     return rejectWithValue(res.status);
   }
 );

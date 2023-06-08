@@ -3,13 +3,13 @@ import { StatusCodeResponse } from "./constants";
 import { saveUserToLocalStorage } from "./auth";
 
 const instance = axios.create({
+  baseURL: process.env.REACT_APP_BASE_API_URL,
   responseType: "json",
   timeout: 30000,
 });
 
 instance.interceptors.response.use(
   (response: AxiosResponse) => {
-    console.log(response)
     return response;
   },
   (error) => {
