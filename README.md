@@ -40,6 +40,6 @@ $ docker compose up -d
 
 $ sudo docker exec -it <Container_Name> sh 
 
-$ npm run test:cov 
+$ npm run test
 
 ```
